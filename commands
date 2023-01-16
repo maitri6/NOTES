@@ -1,0 +1,473 @@
+"mongodb+srv://root:root@cluster0.itloa.mongodb.net/Doctor-Patient?retryWrites=true&w=majority
+
+mongodb+srv://CMS:bk9828064545@cluster0.itloa.mongodb.net/Doctor-Patient?retryWrites=true&w=majority"
+
+`mongodb://${process.env.DB_USER}:${process.env.DB_PASSWORD}@mongo-database/${process.env.DB_NAME}?retryWrites=true&writeConcern=majority`;
+
+
+CONTAINER MONGODB URL :=  mongodb://127.0.0.1:27017/?directConnection=true&serverSelectionTimeoutMS=2000&appName=mongosh+1.6.0
+
+RUN npm rebuild bcrypt --build-from-source
+
+
+docker run -it mongo:5.0 mongosh "
+"mongo+srv://username:password@clusterURL/database"
+
+
+
+ "proxy": "http://localhost:4000"
+
+
+mongodb://mongo-db:27017
+
+mongodb://localhost:27017/node
+
+mongodb://localhost/node
+
+ TO START SONAR QUBE
+ 
+ 
+C:\sonarqube-8.9.9.56886\bin\windows-x86-64   ---- command StartSonar.bat
+
+NODE CODE SCAN
+
+ -D"sonar.projectKey=sonarqube1" -D"sonar.sources=." -D"sonar.host.url=http://localhost:9000" -D"sonar.login=sonarqube"
+
+ANGULAR CODE SCAN
+
+ -D"sonar.projectKey=angular" -D"sonar.sources=." -D"sonar.host.url=http://localhost:9000" -D"sonar.login=sonarqube"
+ 
+ -D"sonar.projectKey=angular" -D"sonar.sources=." -D"sonar.host.url=http://localhost:9000" -D"sonar.login=sonarqube"
+
+
+
+docker build -t realestate-angular ./
+
+docker build --file=doctor-patient-frontend/Dockerfile -t frontend .
+
+docker build --file=doctor-patient-backend/Dockerfile -t backend .
+
+docker build . -t maitri/backend
+
+docker build . -t maitri/frontend
+
+docker run <name of image>
+
+docker run -d -p 3000:3000 <image name>
+
+
+docker-compose up -d --build
+
+docker-compose ps
+
+# See logs for all services
+docker-compose logs -f
+
+# See logs for only the application service
+docker-compose logs -f web
+
+# See logs for only the MongoDB service
+docker-compose logs -f database
+
+
+docker inspect -f '{{ .Mounts }}' container_id----- to see the volumes mounted to container
+
+docker exec -it db_container bash----    to go inside the container and execute bash commands
+
+mongosh ----- to access the mongodb
+
+show dbs
+
+use <database_name>
+
+show tables
+
+db.<table_name>.find()--- to see data
+
+
+
+
+
+version: '3'
+services:
+
+
+   #MongoDB services
+
+   mongo_db:
+      container_name: db_container_mongo
+      image: mongo
+      restart: always
+      volumes:
+         - mongo_db:/data/db
+
+  # mongo express
+
+   mongo-express:
+      image: mongo-express
+      restart: always
+      ports:
+         - 8000:8000
+      environment:
+            - ME_CONFIG_MONGODB_SERVER=mongo_db   
+      depends_on:
+      - mongo_db        
+
+
+
+   # Node API service
+
+
+   api:
+      container_name: node_app
+      build: .
+      ports: 
+         - 5556:5556
+      environment:
+         PORT: 5556
+         MONGODB_URI: mongodb://mongo_db:27017
+         DB_NAME : node
+      depends_on:
+         - mongo_db
+      links:
+         - mongo_db   
+
+volumes:
+   mongo_db: {}
+   
+   
+   
+   
+   
+ MONGO_EXPRESSS
+
+
+
+
+version: '3'
+services:
+  mongodb:
+    image: mongo
+    ports:
+      - 27017:27017
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=admin
+      - MONGO_INITDB_ROOT_PASSWORD=password
+
+  mongo-express:
+    image: mongo-express
+    ports:
+      - 8081:8081
+    environment:
+      - ME_CONFIG_MONGODB_ADMINUSERNAME=admin
+      - ME_CONFIG_MONGODB_ADMINPASSWORD=password
+      - ME_CONFIG_MONGODB_SERVER=mongodb
+    depends_on:
+      - mongodb 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ environment:
+      NODE_ENV: dev
+      DB_USER: testdb
+      DB_PASSWORD: testpwd
+      DB_NAME: myapp
+	  
+	  
+	  environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: example
+	  
+	  
+	  
+	  
+	  
+	  
+	  
+	  
+	  
+	  
+	  
+	  
+	  
+	  
+	  
+	  mongo-express:    
+    image: mongo-express
+    container_name: mongo-express1
+    restart: always
+    ports:
+      - "8081:8081"
+    environment:
+      ME_CONFIG_MONGODB_AUTH_USERNAME: admin
+      ME_CONFIG_MONGODB_AUTH_PASSWORD: pass
+      ME_CONFIG_MONGODB_AUTH_DATABASE: node  
+      ME_CONFIG_MONGODB_URL: mongodb://admin:pass@mongo_db:27017/node
+	  
+	  
+	  
+	  
+	  
+	  
+	  
+	  
+	  
+	  
+	  
+	  
+	  LATEST
+	  
+	  
+	  mongo-express:
+        container_name: mongo-express
+        image: mongo-express
+        restart: always
+        ports:
+          - 8081:8081
+        depends_on:
+          - mongo-db
+        links:
+          - mongo-db
+           
+		   
+		   
+		   
+		   
+		   
+		   
+		   
+		   NODE   
+		   
+		   
+		   npm init
+		   npm start
+		   npm i
+		   rm -r node_modules
+		   
+		   
+		   
+		   
+		   
+		   
+		   
+		   PROJECT DOCKER COMPOSE FILE 
+		   
+		   
+		   
+		   
+		   
+		   version: '3'
+services:
+
+
+   #MongoDB services
+
+   mongo-db:
+      container_name: database1
+      image: mongo
+      restart: always
+      ports:
+         - '27017:27017'
+
+  # angular
+
+   angular:
+      container_name: angular_app1
+      build: 
+         context: ./doctor-patient-frontend
+         dockerfile: Dockerfile
+      ports:
+         - 4200:80
+      depends_on:
+         - node
+         - mongo-db
+      links:
+         - node      
+
+        
+
+
+
+   # Node API service
+
+
+   node:
+      container_name: node_server1
+      build: 
+         context: ./doctor-patient-backend
+         dockerfile: Dockerfile
+      ports: 
+         - 3003:3003
+      environment:
+      
+         PORT: 3003
+         MONGODB_URI: mongodb://mongo-db:27017
+         DB_NAME : node
+      depends_on:
+         - mongo-db
+      links:
+         - mongo-db 
+      volumes:
+       
+         - ./mongo:/home/mongodb
+         - ./mongo/init-db.d/:/docker-entrypoint-initdb.d/
+         - ./mongo/db:/data/db  
+   
+
+  # mongo express
+
+   
+
+volumes:
+   mongo-db: {}
+   
+   
+   
+   
+   
+   
+   
+   DOCKERFILE ANGULAR 
+   
+   
+   
+   # Step 1
+FROM node:alpine as build-step
+WORKDIR /app
+COPY package.json /app
+RUN npm install
+COPY . /app
+
+RUN npm  i && npm run build 
+
+# Step 2
+FROM nginx:alpine
+
+WORKDIR /usr/share/ngnix/html
+
+RUN rm -rf ./*
+
+COPY --from=build-step  /usr/share/nginx/html .
+
+RUN chown ngnix:ngnix /usr/share/ngnix/html/*
+
+ENTRYPOINT [ "ngnix","-g"."daemon off;" ]
+
+
+
+
+
+
+
+
+
+SONAR PROPERTIES
+
+
+sonar.projectKey=VelocityApp
+sonar.projectName=VelocityApp
+sonar.projectVersion=0.1
+ 
+sonar.language=js
+sonar.sources=config,controllers,routes,app.js
+sonar.sourceEncoding=UTF-8
+
+
+sonar.tests=test/appTest.js
+sonar.inclusions=config,controllers,routes,app.js,test,public
+
+sonar.dynamicAnalysis=reuseReports
+sonar.javascript.lcov.reportPaths=coverage/lcov.info
+
+
+
+
+
+
+
+
+
+
+
+
+SONAR-PROPERTIES NODE
+
+# required metdata
+sonar.projectKey=sonarqube1
+
+sonar.projectVersion=1.0
+sonar.sourceEncoding=UTF-8
+# sonar.language=js
+sonar.host.url=http://localhost:9000/
+sonar.login=sonarqube
+
+# path to srouce directories
+sonar.sources=.
+# sonar.tests=app/test/integration/api/
+
+# excludes
+sonar.exclusions=**/*spec.ts
+sonar.exclusions=.
+
+# coverage reporting
+sonar.javascript.coveragePlugin=lcov
+sonar.javascript.lcov.reportPaths=coverage/lcov.info
+
+
+
+
+
+
+
+
+
+
+npm outdated
+npm install -g @angular/cli
+ng update
+ng update @angular/cli @angular/core --allow-dirty --force   
+npm install -g npm@9.1.2
+ ng build --configuration production
+ 
+ 
+ 
+ 
+ git remote add origin https://github.com/Bharatkalwani/Doctor-Patient-App.git
+ 
+ git pull origin branch-name
+
+
+Error: Cannot find module '/app/npm '
+
+at Function.Module._resolveFilename (node:internal/modules/cjs/loader:985:15)
+
+
+
+
+
+server {
+  charset utf-8;
+  listen 80 default_server;
+  server_name _;
+  # node api reverse proxy
+  location /api/ {
+    proxy_pass http://localhost:8000/api/;
+  }
+  # angular app & front-end files
+  location / {
+    root /opt/front-end/someRootDir;
+    try_files $uri /index.html;
+  }
+}
