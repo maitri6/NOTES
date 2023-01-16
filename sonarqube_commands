@@ -1,0 +1,275 @@
+SONAR QUBE CONTAINER 
+
+
+docker run -d --name sonarqube -p 9000:9000 -p 9092:9092 sonarqube
+
+
+API_TOKEN ---- 112e0ffd0da988f18437d6b9fcf5048e53
+
+GITHUB_TOKEN --- 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
+
+
+links ---
+
+
+https://stackoverflow.com/questions/64034632/error-running-sonar-scanner-via-docker-image
+
+https://stackoverflow.com/questions/64034632/error-running-sonar-scanner-via-docker-image
+
+https://javascript.plainenglish.io/how-to-set-up-sonarqube-locally-on-a-react-typescript-project-ec02cd8e2626
+
+https://github.com/newtmitch/docker-sonar-scanner
+
+
+docker run -d --name sonarqube -e SONAR_ES_BOOTSTRAP_CHECKS_DISABLE=true -p 9000:9000 sonarqube:latest
+
+
+PASS --- maitri
+
+
+sqp_092b037aa9c928c21d6ed2c924d8836dc965e1df
+
+
+sonar-scanner.bat -D"sonar.projectKey=node" -D"sonar.sources=." -D"sonar.host.url=http://localhost:9000" -D"sonar.login=sqp_070d6f6b819f06f4a4d1b21bfd0c97747ad05366"
+
+sonar-scanner.bat -D"sonar.projectKey=angular" -D"sonar.sources=." -D"sonar.host.url=http://localhost:9000" -D"sonar.login=sqp_6d808556cb1fb91a7499e24a7c92f04f1791d740"
+
+
+sonar.scm.exclusions.disabled=true
+
+Included sources: **/*.js
+
+
+SONAR SCANNER 
+
+
+docker run \
+    --rm \
+    -e SONAR_HOST_URL="http://${SONARQUBE_URL}" \
+    -e SONAR_SCANNER_OPTS="-Dsonar.projectKey=${YOUR_PROJECT_KEY}"
+    -e SONAR_LOGIN="myAuthenticationToken" \
+    -v "${YOUR_REPO}:/usr/src" \
+    sonarsource/sonar-scanner-cli
+	
+	
+	
+	
+ docker run --rm --link sonarqube \
+-e SONAR_HOST_URL="http://sonarqube:9000" \
+-e SONAR_LOGIN="61ea1b5b8ad10ba558da7f050ae050cbcb6f5033" \
+-v "C:/Users/user/Desktop/DOCKER/PROJECT_DEMO:C:/doctor-patient-backend" \
+sonarsource/sonar-scanner-cli
+
+
+
+
+	
+ docker run --rm --link sonarqube -e SONAR_HOST_URL="http://sonarqube:9000" -e SONAR_LOGIN="sqp_070d6f6b819f06f4a4d1b21bfd0c97747ad05366" -v "C:/Users/user/Desktop/DOCKER/PROJECT_DEMO/doctor-patient-backend:/usr/src" sonarsource/sonar-scanner-cli  -D sonar.projectKey=node -D sonar.exclusions=**/node_modules/**, -D sonar.language=js -D sonar.sources=config
+
+ docker run --rm --link sonarqube -e SONAR_HOST_URL="http://sonarqube:9000" -e SONAR_LOGIN="sqp_070d6f6b819f06f4a4d1b21bfd0c97747ad05366" -v "C:/Users/user/Desktop/DOCKER/PROJECT_DEMO/doctor-patient-frontend:/usr/src" sonarsource/sonar-scanner-cli  -D sonar.projectKey=node -D sonar.exclusions=**/node_modules/**
+
+ docker run --rm --link sonarqube -e SONAR_HOST_URL="http://sonarqube:9000" -e SONAR_LOGIN="sqp_6d808556cb1fb91a7499e24a7c92f04f1791d740" -v "C:/Users/user/Desktop/DOCKER/PROJECT_DEMO/doctor-patient-frontend:/usr/src" sonarsource/sonar-scanner-cli  -D sonar.projectKey=angular -D sonar.exclusions=**/node_modules/**, -D sonar.language=ts -D sonar.sources=src/app -D sonar.ts.coverage.lcovReportPath=coverage/coverage.lcov
+
+
+
+ docker run --rm --link sonarqube -e SONAR_HOST_URL="http://sonarqube:9000" -e SONAR_LOGIN="sqp_6d808556cb1fb91a7499e24a7c92f04f1791d740" -v "C:/Users/user/Desktop/ANGULAR_SAMPLE/mean-stack-application:/usr/src" sonarsource/sonar-scanner-cli  -D sonar.projectKey=angular -D sonar.exclusions=**/node_modules/** -D sonar.sources=client/src/app -D sonar.language=ts 
+
+
+sonar.language=js    sonar.exclusions=**/node_modules/**,**/*.spec.ts   sonar.language=ts    sonar.exclusions=**/*.spec.js, **/*.spec.ts, src/test/*
+ 
+ 
+ docker run \
+    --rm \
+    -e SONAR_HOST_URL="http://${SONARQUBE_URL}" \
+    -e SONAR_LOGIN="849d0a95e7572891592272b917d82a55586cd785" \
+    -v "${YOUR_REPO}:/usr/src" \
+    sonarsource/sonar-scanner-cli \
+    -Dsonar.projectKey=individual.mystic \
+    -Dsonar.sonar.projectName="Learning Go in Action" \
+    -Dsonar.sonar.projectVersion=1.0 \
+    -Dsonar.sonar.sourceEncoding=UTF-8
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	sonar-project.js
+	
+	
+	
+	
+	const sonarqubeScanner = require('sonarqube-scanner');
+     sonarqubeScanner({
+       serverUrl: 'http://localhost:9000',
+       options : {
+       'sonar.sources': '.',
+       'sonar.login' : 'sqp_61ea1b5b8ad10ba558da7f050ae050cbcb6f5033',
+       'sonar.projectBaseDir' : ' C:/Users/user/Desktop/DOCKER/PROJECT_DEMO/doctor-patient-backend',
+       'sonar.inclusions' : 'doctor-patient-backend/**', // Entry point of your code
+        'sonar.projectKey'  : 'node',
+        //'sonar.branch.name ' : 'feature-branch',
+       //'sonar.javascript.file.suffixes': '.js,.jsx',
+       'sonar.typescript.file.suffixes': '.ts,.tsx',
+       //'sonar.language' : 'js'
+       }
+     }, () => {});
+	 
+	 
+	 
+	 
+	 
+	 
+	 
+	 
+	 sonar-properties
+	 
+	 
+	 
+	 
+	 
+	 
+	 
+	 # must be unique in a given SonarQube instance
+sonar.projectKey=node
+
+# --- optional properties ---
+
+# defaults to project key
+sonar.projectName=node
+# defaults to 'not provided'
+sonar.projectVersion=1.0
+
+sonar.language=js
+
+sonar.login= sqp_61ea1b5b8ad10ba558da7f050ae050cbcb6f5033
+
+sonar.projectBaseDir= C:/Users/user/Desktop/DOCKER/PROJECT_DEMO/doctor-patient-backend
+
+# Path is relative to the sonar-project.properties file. Defaults to .
+sonar.sources=.
+
+#sonar.inclusions= doctor-patient-backend/config/**
+
+sonar.javascript.file.suffixes= .js,.jsx
+
+# Encoding of the source code. Default is default system encoding
+sonar.sourceEncoding=UTF-8
+
+
+sonar.javascript.node.maxspace=8192
+
+“npm install -g increase-memory-limit”
+
+
+
+
+
+
+
+
+
+
+
+sonar.projectKey=angular:angular-starter
+sonar.projectName=angular-starter
+sonar.projectVersion=6.0.0
+sonar.sourceEncoding=UTF-8
+sonar.sources=src
+sonar.exclusions=**/node_modules/**,**/*.spec.ts
+sonar.tests=src/app
+sonar.test.inclusions=**/*.spec.ts
+
+sonar.ts.tslint.configPath=tslint.json
+sonar.ts.coverage.lcovReportPath=coverage/coverage.lcov
+# if using local tslint then enable the line below
+# sonar.ts.tslint.outputPath=reports/lint_issues.json
+sonar.genericcoverage.unitTestReportPaths=reports/ut_report.xml
+
+# Change the host.url to point to the 
+# sonarcube server (default localhost)
+sonar.host.url=http://localhost:9000
+
+
+
+
+
+SONAR FOR ANGULAR_SAMPLE/mean-stack-application
+
+
+
+sonar.host.url=SONAR-QUBE-URL
+sonar.projectKey=Project_Key # Must be unique (Primary key)
+sonar.projectName=PROJECT_NAME # name that will be displayed on the dashboard
+sonar.projectVersion=1.0
+sonar.sourceEncoding=UTF-8
+sonar.sources=src
+sonar.exclusions=**/node_modules/**
+sonar.tests=src # Where to pickup test files from
+sonar.test.inclusions=**/*.spec.ts # only collect these for test-coverage
+sonar.javascript.lcov.reportPaths=src/coverage/PROJECT_NAME/lcov.info
+sonar.testExecutionReportPaths=reports/sonarqube_report.xml
+
+
+
+
+
+
+
+
+***JENKINS_SERVER_URL***/job/***JENKINS_JOB_NAME***/build?token=***JENKINS_BUILD_TRIGGER_TOKEN***
+
+
+http://localhost:8081/job/sonar_jenkins/build?token=jenkins/github-webhook
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+dir /s /b /o:gn
+/S Displays files in specified directory and all subdirectories.
+
+/B Uses bare format (no heading information or summary).
+
+/O List by files in sorted order.
+
+Then in :gn, g sorts by folders and then files, and n puts those files in alphabetical order.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+$oldPath = [Environment]::GetEnvironmentVariable('Path', [EnvironmentVariableTarget]::Machine)
+if ($oldPath.Split(';') -inotcontains 'F:\minikube'){ `
+  [Environment]::SetEnvironmentVariable('Path', $('{0};F:\minikube' -f $oldPath), [EnvironmentVariableTarget]::Machine) `
+}
