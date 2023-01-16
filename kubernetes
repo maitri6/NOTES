@@ -1,0 +1,169 @@
+git remote add origin https://github.com/maitri6/KUBERNETES.git
+git branch -M main
+git push -u origin main
+
+
+
+
+KUERNETES
+
+
+
+
+
+New-Item -Path 'F:\' -Name 'minikube' -ItemType Directory -Force
+Invoke-WebRequest -OutFile 'F:\minikube\minikube.exe' -Uri 'https://github.com/kubernetes/minikube/releases/latest/download/minikube-windows-amd64.exe' -UseBasicParsing
+
+
+
+$oldPath = [Environment]::GetEnvironmentVariable('Path', [EnvironmentVariableTarget]::Machine)
+if ($oldPath.Split(';') -inotcontains 'F:\minikube'){ `
+  [Environment]::SetEnvironmentVariable('Path', $('{0};F:\minikube' -f $oldPath), [EnvironmentVariableTarget]::Machine) `
+}
+
+
+
+
+MINIKUBE COMMANDS:---
+
+
+powershell run as administrator
+
+minikube start
+
+minikube status
+
+minikube dashboard
+
+minikube dashboard --url
+
+minikube ip
+
+
+
+
+
+KUBECTL COMMANDS:---
+
+
+
+
+kubectl get pods
+
+
+kubectl apply -f <yaml file name>       kubectl create -f redispod.yml
+
+
+kubectl get pods/<pod name>
+
+
+kubectl describe pods/<pod name>
+
+
+kubectl delete pod <pod name>
+
+
+
+
+pod.yaml
+
+
+
+apiVersion: v1
+kind: Pod
+metadata:
+   name: redis-pod
+spec:
+   containers:
+   - name: redis
+     image: maitri6/redis:latest
+     ports:
+     - containerPort: 6379
+	 
+	 
+	 
+	 
+	 
+deployment.yaml
+
+
+
+
+
+apiVersion: apps/v1                                                                                
+kind: Deployment
+metadata:
+   name: redis-deployment
+spec: 
+   replicas: 1
+   selector: 
+      matchLabels:
+         app: redis
+   template:
+      metadata:
+         labels:
+            app: redis
+      spec: 
+         containers:                                                 
+         -  name: redis
+            image: maitri6/redis:latest
+            ports:
+            -  containerPort: 6379 
+
+
+
+
+
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+   name: first-app-deployment
+spec: 
+    replicas: 1
+    selector:
+       matchLabels:
+          app: first-app
+    template:   
+       metadata:
+          labels: 
+             app: first-app
+        spec:
+           containers:
+            -   name: first-node
+                image: maitri6/kub-first-app
+
+
+
+
+
+FROM node:14-alpine
+
+
+#RUN npm install --global nodemon
+
+WORKDIR /app
+
+COPY package.json  ./
+
+RUN npm install
+
+
+
+
+#RUN npm rebuild bcrypt 
+
+
+
+COPY . .
+
+EXPOSE 3003
+
+
+CMD ["node","app.js"]			
+
+
+
+
+
+
